@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BookStore</string>
+    <string name="book_city">书城</string>
+    <string name="book_self">书架</string>
+    <string name="book_idea">想法</string>
+    <string name="book_my">我的</string>
+</resources>

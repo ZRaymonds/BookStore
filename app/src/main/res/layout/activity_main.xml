@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#f4f4f4"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/llCity"
+            style="@style/BaseLinearLayoutStyle">
+
+            <ImageView
+                android:id="@+id/ivCity"
+                android:src="@drawable/tab_menu_bookcity"
+                style="@style/BaseImageViewStyle"/>
+
+            <TextView
+                android:id="@+id/tvCity"
+                android:text="@string/book_city"
+                style="@style/BaseTextViewStyle"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSelf"
+            style="@style/BaseLinearLayoutStyle">
+
+            <ImageView
+                android:id="@+id/ivSelf"
+                android:src="@drawable/tab_menu_bookself"
+                style="@style/BaseImageViewStyle"/>
+
+            <TextView
+                android:id="@+id/tvSelf"
+                android:text="@string/book_self"
+                style="@style/BaseTextViewStyle"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llIdea"
+            style="@style/BaseLinearLayoutStyle" >
+
+            <ImageView
+                android:id="@+id/ivIdea"
+                android:src="@drawable/tab_menu_idea"
+                style="@style/BaseImageViewStyle"/>
+
+            <TextView
+                android:id="@+id/tvIdea"
+                android:text="@string/book_idea"
+                style="@style/BaseTextViewStyle"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSettings"
+            style="@style/BaseLinearLayoutStyle">
+
+            <ImageView
+                android:id="@+id/ivSettings"
+                android:src="@drawable/tab_menu_my"
+                style="@style/BaseImageViewStyle"/>
+
+            <TextView
+                android:id="@+id/tvSettings"
+                android:text="@string/book_my"
+                style="@style/BaseTextViewStyle"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
