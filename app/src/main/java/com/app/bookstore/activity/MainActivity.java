@@ -4,11 +4,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.bookstore.R;
 import com.app.bookstore.fragment.BookCityFragment;
@@ -69,11 +71,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvCurrent;
 
     private FragmentManager fragmentManager;
-
     private BookCityFragment bookCityFragment;
     private BookSelfFragment bookSelfFragment;
     private BookIdeaFragment bookIdeaFragment;
     private BookMyFragment bookMyFragment;
+
+    private long lastBackTime=0;
+    private long currentBackTime=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         initView();
     }
+
+
 
     private void initView() {
 
@@ -139,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     bookIdeaFragment = new BookIdeaFragment();
                     transaction.add(R.id.main_content,bookIdeaFragment);
                 }else {
-                    transaction.show(bookIdeaFragment);
+                   transaction.show(bookIdeaFragment);
                 }
                 break;
             case R.id.llSettings:
@@ -154,11 +160,13 @@ public class MainActivity extends AppCompatActivity {
                     transaction.show(bookMyFragment);
                 }
                 break;
-
         }
         transaction.commit();
     }
 
+    /**
+     * 隐藏所有Fragment
+     * */
     private void hideAllFragment(FragmentTransaction transaction) {
         if (bookCityFragment != null){
             transaction.hide(bookCityFragment);
@@ -173,4 +181,20 @@ public class MainActivity extends AppCompatActivity {
             transaction.hide(bookMyFragment);
         }
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            currentBackTime=System.currentTimeMillis();
+            if(currentBackTime-lastBackTime>2*1000){
+                Toast.makeText(this,"再按一次返回键退出",Toast.LENGTH_SHORT).show();
+                lastBackTime=currentBackTime;
+            }else {
+                finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
+
 }
