@@ -1,2 +1,2 @@
 # BookStore
-BookStore开发
+卓越书店实验项目
