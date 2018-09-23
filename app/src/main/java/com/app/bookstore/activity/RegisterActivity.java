@@ -1,5 +1,6 @@
 package com.app.bookstore.activity;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
