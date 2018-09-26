@@ -17,9 +17,16 @@ public class DbUtil {
     public static DbManager.DaoConfig getDaoConfig() {
         if(daoConfig==null){
             daoConfig=new DbManager.DaoConfig()
-                    .setDbName("user.db")
+                    .setDbName("bookStore.db")
                     .setDbVersion(1)
                     .setAllowTransaction(true)
+                    .setDbOpenListener(new DbManager.DbOpenListener() {
+                        @Override
+                        public void onDbOpened(DbManager db) {
+                            // 开启WAL, 对写入加速提升巨大
+                            db.getDatabase().enableWriteAheadLogging();
+                        }
+                    })
                     .setDbUpgradeListener(new DbManager.DbUpgradeListener() {
                         @Override
                         public void onUpgrade(DbManager db, int oldVersion, int newVersion) {

@@ -10,4 +10,5 @@
     <string name="member">卓会员</string>
     <string name="waller">卓钱包</string>
     <string name="my_planning">我的订单</string>
+    <string name="name_not_exist">用户不存在</string>
 </resources>

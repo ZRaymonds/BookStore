@@ -50,7 +50,6 @@
             android:layout_height="20dp"
             android:layout_below="@+id/iv_loginView"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/tab_menu_button"
             android:text="@string/login_name" />
 
     </RelativeLayout>

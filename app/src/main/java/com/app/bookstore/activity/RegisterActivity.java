@@ -1,7 +1,6 @@
 package com.app.bookstore.activity;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.bookstore.R;
+import com.app.bookstore.bean.MsgBean;
 import com.app.bookstore.dao.UserDao;
 import com.app.bookstore.db.UserTable;
 import com.app.bookstore.util.DbUtil;
+import com.google.gson.Gson;
 
 import org.xutils.DbManager;
 import org.xutils.common.Callback;
@@ -28,6 +29,8 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by ming on 2018/09/20.
@@ -68,9 +71,20 @@ public class RegisterActivity extends AppCompatActivity{
 
     @Event({R.id.btn_register,R.id.back,R.id.btn_selectAll})
     private void onClick(View v){
+        String mobile = et_register_username.getText().toString();
+        String passwrod = et_register_password.getText().toString();
         switch (v.getId()){
             case R.id.btn_register:
-                registerUser();
+                boolean b = isPhoneNumber(mobile);
+                if (mobile.isEmpty() || passwrod.isEmpty()){
+                    Toast.makeText(this,"用户名或密码不能为空",Toast.LENGTH_SHORT).show();
+                }else if (!b){
+                    Toast.makeText(this,"输入的手机号有误",Toast.LENGTH_SHORT).show();
+                }else if (passwrod.length() < 6){
+                    Toast.makeText(this,"密码不能少于六位数",Toast.LENGTH_SHORT).show();
+                }else {
+                    registerUser(mobile,passwrod);
+                }
                 break;
             case R.id.back:
                 finish();
@@ -95,42 +109,57 @@ public class RegisterActivity extends AppCompatActivity{
 
     }
 
-    private void registerUser() {
-        UserTable user = new UserTable();
-        user.setMobile_phone(et_register_username.getText().toString().trim());
-        user.setPassword(et_register_password.getText().toString().trim());
+    private void registerUser(String mobile, String passwrod) {
+        final UserTable user = new UserTable();
+        user.setMobile_phone(mobile);
+        user.setPassword(passwrod);
         user.setEmail(et_register_email.getText().toString().trim());
         UserDao.save(user);
         RequestParams params = new RequestParams(registerUrl);
-        params.addBodyParameter("mobile_phone",et_register_username.getText().toString().trim());
-        params.addBodyParameter("password",et_register_password.getText().toString().trim());
+        params.addBodyParameter("mobile_phone",mobile);
+        params.addBodyParameter("password",passwrod);
         params.addBodyParameter("email",et_register_email.getText().toString().trim());
         x.http().post(params, new Callback.CacheCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
-                Log.d("TAG",result);
-            }
+                @Override
+                public void onSuccess(String result) {
+                    Gson gson = new Gson();
+                    MsgBean msgBean = gson.fromJson(result,MsgBean.class);
+                    Toast.makeText(RegisterActivity.this,msgBean.getMsg(),Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                    finish();
+                    Log.d("TAG",result);
+                }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                Toast.makeText(RegisterActivity.this,ex.toString(),Toast.LENGTH_SHORT).show();
-                Log.d("TAG",ex.toString());
-            }
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    Toast.makeText(RegisterActivity.this,ex.toString(),Toast.LENGTH_SHORT).show();
+                    Log.d("TAG",ex.toString());
+                }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
+                @Override
+                public void onCancelled(CancelledException cex) {
 
-            }
+                }
 
-            @Override
-            public void onFinished() {
-            }
+                @Override
+                public void onFinished() {
+                }
 
-            @Override
-            public boolean onCache(String result) {
-                return false;
-            }
-        });
+                @Override
+                public boolean onCache(String result) {
+                    return false;
+                }
+            });
+        }
+
+    private boolean isPhoneNumber(String phoneStr) {
+        //定义电话格式的正则表达式
+        String regex = "^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+        //设定查看模式
+        Pattern p = Pattern.compile(regex);
+        //判断Str是否匹配，返回匹配结果
+        Matcher m = p.matcher(phoneStr);
+        return m.find();
     }
+
 }

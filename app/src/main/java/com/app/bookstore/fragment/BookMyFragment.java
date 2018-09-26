@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -28,8 +29,8 @@ import org.xutils.x;
 @ContentView(R.layout.fragment_book_my)
 public class BookMyFragment extends Fragment{
 
-    @ViewInject(R.id.tv_jumpLogin)
-    TextView tv_jumpLogin;
+    @ViewInject(R.id.iv_loginView)
+    ImageView iv_loginView;
 
     @Override
     public void onAttach(Context context) {
@@ -57,10 +58,10 @@ public class BookMyFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Event(R.id.tv_jumpLogin)
+    @Event(R.id.iv_loginView)
     private void onClick(View v){
         switch (v.getId()){
-            case R.id.tv_jumpLogin:
+            case R.id.iv_loginView:
                 startActivity(new Intent(getActivity(),LoginActivity.class));
                 break;
         }

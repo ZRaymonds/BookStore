@@ -1,5 +1,7 @@
 package com.app.bookstore.db;
 
+import android.support.annotation.TransitionRes;
+
 import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
 
@@ -13,7 +15,7 @@ public class UserTable {
     @Column(name = "id",isId = true,autoGen = true)
     private int id;
 
-    @Column(name = "mobile_phone")
+    @Column(name = "mobile_phone",property = "UNIQUE")
     private String mobile_phone;
 
     @Column(name = "password")
@@ -21,6 +23,14 @@ public class UserTable {
 
     @Column(name = "email")
     private String email;
+
+    public UserTable() {
+    }
+
+    public UserTable(String mobile_phone, String password) {
+        this.mobile_phone = mobile_phone;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
