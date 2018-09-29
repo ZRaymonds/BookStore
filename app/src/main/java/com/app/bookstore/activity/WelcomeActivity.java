@@ -20,12 +20,11 @@ import org.xutils.x;
  */
 
 @ContentView(R.layout.activity_welcome)
-public class WelcomActivity extends AppCompatActivity{
+public class WelcomeActivity extends AppCompatActivity {
 
     @ViewInject(R.id.splash)
     LinearLayout splash;
 
-    private ValueAnimator welAnimator;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class WelcomActivity extends AppCompatActivity{
     }
 
     private void initData() {
-        AlphaAnimation alphaAnimation=new AlphaAnimation(0.1f,1.0f);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
         alphaAnimation.setDuration(3000);//设置动画播放时长3000毫秒（3秒）
         splash.startAnimation(alphaAnimation);
         alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
@@ -47,7 +46,7 @@ public class WelcomActivity extends AppCompatActivity{
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                startActivityByAnim(new Intent(WelcomActivity.this,MainActivity.class),R.anim.anim_in,R.anim.anim_out);
+                startActivityByAnim(new Intent(WelcomeActivity.this, MainActivity.class), R.anim.anim_in, R.anim.anim_out);
                 finish();
             }
 

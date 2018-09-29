@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.app.bookstore.R;
 import com.app.bookstore.activity.LoginActivity;
+import com.app.bookstore.activity.SettingActivity;
 
 import org.xutils.view.annotation.ContentView;
 
@@ -27,10 +28,13 @@ import org.xutils.x;
  */
 
 @ContentView(R.layout.fragment_book_my)
-public class BookMyFragment extends Fragment{
+public class BookMyFragment extends Fragment {
 
     @ViewInject(R.id.iv_loginView)
     ImageView iv_loginView;
+//
+//    @ViewInject(R.id.iv_setting)
+//    ImageView iv_setting;
 
     @Override
     public void onAttach(Context context) {
@@ -45,7 +49,7 @@ public class BookMyFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return x.view().inject(this,inflater,container);
+        return x.view().inject(this, inflater, container);
     }
 
     @Override
@@ -58,11 +62,16 @@ public class BookMyFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Event(R.id.iv_loginView)
-    private void onClick(View v){
-        switch (v.getId()){
+    @Event({R.id.iv_loginView, R.id.iv_setting})
+    private void onClick(View v) {
+        switch (v.getId()) {
             case R.id.iv_loginView:
-                startActivity(new Intent(getActivity(),LoginActivity.class));
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                break;
+//            case R.id.iv_setting:
+//                startActivity(new Intent(getActivity(),SettingActivity.class));
+//                break;
+            default:
                 break;
         }
     }

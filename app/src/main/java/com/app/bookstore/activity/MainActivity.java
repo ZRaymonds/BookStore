@@ -79,8 +79,8 @@ public class MainActivity extends FragmentActivity {
     private BookIdeaFragment bookIdeaFragment;
     private BookMyFragment bookMyFragment;
 
-    private long lastBackTime=0;
-    private long currentBackTime=0;
+    private long lastBackTime = 0;
+    private long currentBackTime = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,28 +106,28 @@ public class MainActivity extends FragmentActivity {
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         bookCityFragment = new BookCityFragment();
-        fragmentTransaction.add(R.id.main_content,bookCityFragment);
+        fragmentTransaction.add(R.id.main_content, bookCityFragment);
         fragmentTransaction.commit();
 
     }
 
-    @Event({R.id.llCity,R.id.llSelf,R.id.llIdea,R.id.llSettings})
-    private void onClick(View v){
+    @Event({R.id.llCity, R.id.llSelf, R.id.llIdea, R.id.llSettings})
+    private void onClick(View v) {
         ivCurrent.setSelected(false);
         tvCurrent.setSelected(false);
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         hideAllFragment(transaction);
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.llCity:
                 ivCity.setSelected(true);
                 ivCurrent = ivCity;
                 tvCity.setSelected(true);
                 tvCurrent = tvCity;
-                if (bookCityFragment == null){
+                if (bookCityFragment == null) {
                     bookCityFragment = new BookCityFragment();
-                    transaction.add(R.id.main_content,bookCityFragment);
-                }else {
+                    transaction.add(R.id.main_content, bookCityFragment);
+                } else {
                     transaction.show(bookCityFragment);
                 }
                 break;
@@ -136,10 +136,10 @@ public class MainActivity extends FragmentActivity {
                 ivCurrent = ivSelf;
                 tvSelf.setSelected(true);
                 tvCurrent = tvSelf;
-                if (bookSelfFragment == null){
+                if (bookSelfFragment == null) {
                     bookSelfFragment = new BookSelfFragment();
-                    transaction.add(R.id.main_content,bookSelfFragment);
-                }else {
+                    transaction.add(R.id.main_content, bookSelfFragment);
+                } else {
                     transaction.show(bookSelfFragment);
                 }
                 break;
@@ -148,11 +148,11 @@ public class MainActivity extends FragmentActivity {
                 ivCurrent = ivIdea;
                 tvIdea.setSelected(true);
                 tvCurrent = tvIdea;
-                if (bookIdeaFragment == null){
+                if (bookIdeaFragment == null) {
                     bookIdeaFragment = new BookIdeaFragment();
-                    transaction.add(R.id.main_content,bookIdeaFragment);
-                }else {
-                   transaction.show(bookIdeaFragment);
+                    transaction.add(R.id.main_content, bookIdeaFragment);
+                } else {
+                    transaction.show(bookIdeaFragment);
                 }
                 break;
             case R.id.llSettings:
@@ -160,12 +160,14 @@ public class MainActivity extends FragmentActivity {
                 ivCurrent = ivSettings;
                 tvSettings.setSelected(true);
                 tvCurrent = tvSettings;
-                if (bookMyFragment == null){
+                if (bookMyFragment == null) {
                     bookMyFragment = new BookMyFragment();
-                    transaction.add(R.id.main_content,bookMyFragment);
-                }else {
+                    transaction.add(R.id.main_content, bookMyFragment);
+                } else {
                     transaction.show(bookMyFragment);
                 }
+                break;
+            default:
                 break;
         }
         transaction.commit();
@@ -173,35 +175,35 @@ public class MainActivity extends FragmentActivity {
 
     /**
      * 隐藏所有Fragment
-     * */
+     */
     private void hideAllFragment(FragmentTransaction transaction) {
-        if (bookCityFragment != null){
+        if (bookCityFragment != null) {
             transaction.hide(bookCityFragment);
         }
-        if (bookSelfFragment != null){
+        if (bookSelfFragment != null) {
             transaction.hide(bookSelfFragment);
         }
-        if (bookIdeaFragment != null){
+        if (bookIdeaFragment != null) {
             transaction.hide(bookIdeaFragment);
         }
-        if (bookMyFragment != null){
+        if (bookMyFragment != null) {
             transaction.hide(bookMyFragment);
         }
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
-            currentBackTime=System.currentTimeMillis();
-            if(currentBackTime-lastBackTime>2*1000){
-                Toast.makeText(this,"再按一次返回键退出",Toast.LENGTH_SHORT).show();
-                lastBackTime=currentBackTime;
-            }else {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            currentBackTime = System.currentTimeMillis();
+            if (currentBackTime - lastBackTime > 2 * 1000) {
+                Toast.makeText(this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+                lastBackTime = currentBackTime;
+            } else {
                 finish();
             }
             return true;
         }
-        return super.onKeyDown(keyCode,event);
+        return super.onKeyDown(keyCode, event);
     }
 
 }

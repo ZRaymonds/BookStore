@@ -17,12 +17,12 @@ import org.xutils.x;
  */
 
 @ContentView(R.layout.fragment_book_city)
-public class BookCityFragment extends Fragment{
+public class BookCityFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return x.view().inject(this,inflater,container);
+        return x.view().inject(this, inflater, container);
     }
 
     @Override

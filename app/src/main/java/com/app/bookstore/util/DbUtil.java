@@ -15,8 +15,8 @@ public class DbUtil {
     static DbManager.DaoConfig daoConfig;
 
     public static DbManager.DaoConfig getDaoConfig() {
-        if(daoConfig==null){
-            daoConfig=new DbManager.DaoConfig()
+        if (daoConfig == null) {
+            daoConfig = new DbManager.DaoConfig()
                     .setDbName("bookStore.db")
                     .setDbVersion(1)
                     .setAllowTransaction(true)

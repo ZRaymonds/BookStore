@@ -12,10 +12,10 @@ import org.xutils.db.annotation.Table;
 @Table(name = "user")
 public class UserTable {
 
-    @Column(name = "id",isId = true,autoGen = true)
+    @Column(name = "id", isId = true, autoGen = true)
     private int id;
 
-    @Column(name = "mobile_phone",property = "UNIQUE")
+    @Column(name = "mobile_phone", property = "UNIQUE")
     private String mobile_phone;
 
     @Column(name = "password")

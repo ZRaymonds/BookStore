@@ -6,8 +6,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:text="书城"
-        android:textSize="24sp"
-        android:layout_centerInParent="true"/>
+        android:textSize="24sp" />
 
 </RelativeLayout>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,10 +12,10 @@
             android:id="@+id/iv_setting"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/icon_setting"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="2dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="2dp"/>
+            android:src="@drawable/icon_setting" />
 
     </RelativeLayout>
 
@@ -24,9 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/rl_top"
-        android:background="#CFCFCF"
-        android:layout_marginTop="2dp">
-    </View>
+        android:layout_marginTop="2dp"
+        android:background="#CFCFCF"></View>
 
     <RelativeLayout
         android:id="@+id/rl_topCenter"
@@ -38,18 +36,18 @@
             android:id="@+id/iv_loginView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/icon_login_view"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="14dp" />
+            android:layout_marginTop="14dp"
+            android:src="@drawable/icon_login_view" />
 
         <TextView
             android:id="@+id/tv_jumpLogin"
             android:layout_width="80dp"
-            android:gravity="center"
             android:layout_height="20dp"
             android:layout_below="@+id/iv_loginView"
             android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:text="@string/login_name" />
 
     </RelativeLayout>
@@ -59,9 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_below="@id/rl_topCenter"
-        android:background="#CFCFCF"
-        android:layout_marginTop="2dp">
-    </View>
+        android:layout_marginTop="2dp"
+        android:background="#CFCFCF"></View>
 
     <LinearLayout
         android:id="@+id/Layout02"
@@ -74,8 +71,8 @@
             android:id="@+id/rl_shopping"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
@@ -88,8 +85,8 @@
                 android:id="@+id/tv_shoppingCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/shopping_cart"
-                android:layout_below="@id/iv_shoppingCart"/>
+                android:layout_below="@id/iv_shoppingCart"
+                android:text="@string/shopping_cart" />
 
         </RelativeLayout>
 
@@ -97,8 +94,8 @@
             android:id="@+id/rl_member"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
@@ -111,8 +108,8 @@
                 android:id="@+id/tv_member"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/member"
-                android:layout_below="@id/iv_member"/>
+                android:layout_below="@id/iv_member"
+                android:text="@string/member" />
 
         </RelativeLayout>
 
@@ -120,8 +117,8 @@
             android:id="@+id/rl_wallet"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
@@ -134,8 +131,8 @@
                 android:id="@+id/tv_wallet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/waller"
-                android:layout_below="@id/iv_wallet"/>
+                android:layout_below="@id/iv_wallet"
+                android:text="@string/waller" />
 
         </RelativeLayout>
 
@@ -146,38 +143,37 @@
         android:layout_width="400dp"
         android:layout_height="1dp"
         android:layout_below="@id/Layout02"
-        android:background="#cdcdcd"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
-    </View>
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:background="#cdcdcd"></View>
 
     <TextView
         android:id="@+id/tv_myplan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/my_planning"
         android:layout_below="@id/view3"
-        android:layout_marginTop="3dp"
         android:layout_marginLeft="30dp"
-        android:textSize="16sp"/>
+        android:layout_marginTop="3dp"
+        android:text="@string/my_planning"
+        android:textSize="16sp" />
 
     <LinearLayout
         android:id="@+id/Layout03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_myplan"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginBottom="5dp">
 
         <RelativeLayout
             android:id="@+id/rl_pending_payment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
@@ -190,8 +186,8 @@
                 android:id="@+id/tv_pending_payment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待付款"
-                android:layout_below="@id/iv_pending_payment"/>
+                android:layout_below="@id/iv_pending_payment"
+                android:text="待付款" />
 
         </RelativeLayout>
 
@@ -199,8 +195,8 @@
             android:id="@+id/rl_pending_delivery"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
@@ -213,8 +209,8 @@
                 android:id="@+id/tv_pending_delivery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待发货"
-                android:layout_below="@id/iv_pending_delivery"/>
+                android:layout_below="@id/iv_pending_delivery"
+                android:text="待发货" />
 
         </RelativeLayout>
 
@@ -222,8 +218,8 @@
             android:id="@+id/rl_pending_received"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
@@ -236,8 +232,8 @@
                 android:id="@+id/tv_pending_received"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待收货"
-                android:layout_below="@id/iv_pending_received"/>
+                android:layout_below="@id/iv_pending_received"
+                android:text="待收货" />
 
         </RelativeLayout>
 
@@ -245,8 +241,8 @@
             android:id="@+id/rl_pending_evaluater"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:gravity="center">
 
             <ImageView
@@ -259,8 +255,8 @@
                 android:id="@+id/tv_pending_evaluater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="待评价"
-                android:layout_below="@id/iv_pending_evaluater"/>
+                android:layout_below="@id/iv_pending_evaluater"
+                android:text="待评价" />
 
         </RelativeLayout>
 
@@ -271,32 +267,33 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_below="@id/Layout03"
-        android:background="#CFCFCF">
-    </View>
+        android:background="#CFCFCF"></View>
 
     <LinearLayout
         android:id="@+id/llFollow"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
         android:layout_below="@id/view4"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/iv_follow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_follow"
+            android:layout_gravity="center"
             android:paddingTop="8sp"
             android:paddingBottom="5dp"
-            android:layout_gravity="center"/>
+            android:src="@drawable/icon_follow" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="关注"
-            android:textSize="15sp"
-            android:paddingTop="5sp"
             android:layout_gravity="center"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:paddingTop="5sp"
+            android:text="关注"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <View
@@ -304,32 +301,33 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_below="@id/llFollow"
-        android:background="#CFCFCF">
-    </View>
+        android:background="#CFCFCF"></View>
 
     <LinearLayout
         android:id="@+id/llNote"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
         android:layout_below="@id/view5"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/iv_note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_note"
+            android:layout_gravity="center"
             android:paddingTop="8sp"
             android:paddingBottom="5dp"
-            android:layout_gravity="center"/>
+            android:src="@drawable/icon_note" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="笔记"
-            android:textSize="15sp"
-            android:paddingTop="5sp"
             android:layout_gravity="center"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:paddingTop="5sp"
+            android:text="笔记"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <View
@@ -337,32 +335,33 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_below="@id/llNote"
-        android:background="#CFCFCF">
-    </View>
+        android:background="#CFCFCF"></View>
 
     <LinearLayout
         android:id="@+id/llBookList"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
         android:layout_below="@id/view6"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/iv_bookList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_book_list"
+            android:layout_gravity="center"
             android:paddingTop="8sp"
             android:paddingBottom="5dp"
-            android:layout_gravity="center"/>
+            android:src="@drawable/icon_book_list" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="书单"
-            android:textSize="15sp"
-            android:paddingTop="5sp"
             android:layout_gravity="center"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:paddingTop="5sp"
+            android:text="书单"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <View
@@ -370,39 +369,39 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_below="@id/llBookList"
-        android:background="#CFCFCF">
-    </View>
+        android:background="#CFCFCF"></View>
 
     <LinearLayout
         android:id="@+id/llCustomer"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
         android:layout_below="@id/view7"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/iv_customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_customer"
+            android:layout_gravity="center"
             android:paddingTop="8sp"
             android:paddingBottom="5dp"
-            android:layout_gravity="center"/>
+            android:src="@drawable/icon_customer" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="客服"
-            android:textSize="15sp"
-            android:paddingTop="5sp"
             android:layout_gravity="center"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:paddingTop="5sp"
+            android:text="客服"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/llCustomer"
-        android:background="#CFCFCF">
-    </View>
+        android:background="#CFCFCF"></View>
 
 </RelativeLayout>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -15,10 +14,10 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_back"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:paddingTop="10dp"
-            android:layout_gravity="center" />
+            android:src="@drawable/icon_back" />
 
     </LinearLayout>
 
@@ -26,11 +25,11 @@
         android:id="@+id/LayoutName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/LayoutReg"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="50dp"
-        android:layout_below="@id/LayoutReg">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,11 +47,11 @@
         android:id="@+id/LayoutPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/LayoutName"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="50dp"
-        android:layout_below="@id/LayoutName">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,7 +62,7 @@
             android:id="@+id/et_register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
 
     </LinearLayout>
 
@@ -71,11 +70,11 @@
         android:id="@+id/LayoutEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/LayoutPassword"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="50dp"
-        android:layout_below="@id/LayoutPassword">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -86,7 +85,7 @@
             android:id="@+id/et_register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress" />
 
     </LinearLayout>
 
@@ -94,21 +93,21 @@
         android:id="@+id/btn_register"
         android:layout_width="100dp"
         android:layout_height="35dp"
-        android:background="@drawable/tab_menu_button"
-        android:text="@string/register_name"
+        android:layout_below="@id/LayoutEmail"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/LayoutEmail"/>
+        android:background="@drawable/tab_menu_button"
+        android:text="@string/register_name" />
 
     <Button
         android:id="@+id/btn_selectAll"
         android:layout_width="100dp"
         android:layout_height="35dp"
-        android:background="@drawable/tab_menu_button"
-        android:text="查询"
+        android:layout_below="@id/btn_register"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/btn_register"/>
+        android:background="@drawable/tab_menu_button"
+        android:text="查询" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -121,7 +120,6 @@
             android:layout_height="wrap_content" />
 
     </ScrollView>
-
 
 
 </RelativeLayout>

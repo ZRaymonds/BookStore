@@ -17,12 +17,12 @@ import org.xutils.x;
  */
 
 @ContentView(R.layout.fragment_book_self)
-public class BookSelfFragment extends Fragment{
+public class BookSelfFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return x.view().inject(this,inflater,container);
+        return x.view().inject(this, inflater, container);
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.xutils.x;
  * Created by ming on 2018/09/18.
  */
 
-public class MyApplication extends Application{
+public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
