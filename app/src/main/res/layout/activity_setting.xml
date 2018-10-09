@@ -11,8 +11,9 @@
         android:id="@+id/RLCheckSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="@drawable/sex_selected_bg">
 
         <ImageView
             android:id="@+id/iv_check"
@@ -34,14 +35,14 @@
             android:layout_toRightOf="@id/iv_check"/>
 
         <TextView
+            android:id="@+id/tv_showVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingTop="5sp"
-            android:text="当前版本:"
             android:textSize="15sp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"/>
+            android:layout_marginRight="10dp"/>
 
     </RelativeLayout>
 

@@ -2,13 +2,14 @@ package com.app.bookstore.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.app.bookstore.R;
 import com.app.bookstore.activity.LoginActivity;
 import com.app.bookstore.activity.SettingActivity;
+import com.google.gson.Gson;
 
 import org.xutils.view.annotation.ContentView;
 
@@ -32,9 +34,16 @@ public class BookMyFragment extends Fragment {
 
     @ViewInject(R.id.iv_loginView)
     ImageView iv_loginView;
-//
-//    @ViewInject(R.id.iv_setting)
-//    ImageView iv_setting;
+
+    @ViewInject(R.id.iv_setting)
+    ImageView iv_setting;
+
+    @ViewInject(R.id.tv_showName)
+    TextView tv_showName;
+
+
+    private SharedPreferences preferences;
+
 
     @Override
     public void onAttach(Context context) {
@@ -62,15 +71,56 @@ public class BookMyFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String account = null;
+        if (preferences != null){
+            account = preferences.getString("mobile_phone","");
+        }
+        tv_showName.setText(account);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
     @Event({R.id.iv_loginView, R.id.iv_setting})
     private void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_loginView:
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
-//            case R.id.iv_setting:
-//                startActivity(new Intent(getActivity(),SettingActivity.class));
-//                break;
+            case R.id.iv_setting:
+                startActivity(new Intent(getActivity(),SettingActivity.class));
+                break;
             default:
                 break;
         }

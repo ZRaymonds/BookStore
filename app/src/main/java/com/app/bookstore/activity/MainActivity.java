@@ -162,7 +162,7 @@ public class MainActivity extends FragmentActivity {
                 tvCurrent = tvSettings;
                 if (bookMyFragment == null) {
                     bookMyFragment = new BookMyFragment();
-                    transaction.add(R.id.main_content, bookMyFragment);
+                    transaction.replace(R.id.main_content, bookMyFragment);
                 } else {
                     transaction.show(bookMyFragment);
                 }

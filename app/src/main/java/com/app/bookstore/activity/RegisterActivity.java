@@ -116,7 +116,6 @@ public class RegisterActivity extends AppCompatActivity {
         user.setMobile_phone(mobile);
         user.setPassword(passwrod);
         user.setEmail(et_register_email.getText().toString().trim());
-        UserDao.save(user);
         RequestParams params = new RequestParams(registerUrl);
         params.addBodyParameter("mobile_phone", mobile);
         params.addBodyParameter("password", passwrod);
@@ -126,16 +125,21 @@ public class RegisterActivity extends AppCompatActivity {
             public void onSuccess(String result) {
                 Gson gson = new Gson();
                 MsgBean msgBean = gson.fromJson(result, MsgBean.class);
-                Toast.makeText(RegisterActivity.this, msgBean.getMsg(), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                finish();
+                int code = msgBean.getCode();
+                if (code == 400) {
+                    Toast.makeText(RegisterActivity.this, msgBean.getMsg(), Toast.LENGTH_SHORT).show();
+                } else {
+                    UserDao.save(user);
+                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                    finish();
+                }
                 Log.d("TAG", result);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 Toast.makeText(RegisterActivity.this, ex.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("TAG", ex.toString());
+                Log.d("TAC", ex.toString());
             }
 
             @Override

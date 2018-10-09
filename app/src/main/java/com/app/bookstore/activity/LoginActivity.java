@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 import com.app.bookstore.R;
 import com.app.bookstore.bean.MsgBean;
 import com.app.bookstore.dao.UserDao;
+import com.app.bookstore.fragment.BookMyFragment;
 import com.app.bookstore.util.LogUtil;
 import com.app.bookstore.util.ToastUtil;
 import com.app.bookstore.util.VerifyUtil;
@@ -65,15 +69,15 @@ public class LoginActivity extends AppCompatActivity {
     @ViewInject(R.id.btn_login)
     Button btn_login;
 
-//    @ViewInject(R.id.cb_remember)
-//    CheckBox cb_remember;
+    @ViewInject(R.id.cb_remember)
+    CheckBox cb_remember;
 
-//    @ViewInject(R.id.cb_autoLogin)
-//    CheckBox cb_autoLogin;
+    @ViewInject(R.id.cb_autoLogin)
+    CheckBox cb_autoLogin;
 
-//    private SharedPreferences preferences;
-//
-//    private SharedPreferences.Editor editor;
+    private SharedPreferences preferences;
+
+    private SharedPreferences.Editor editor;
 
     private String loginUrl = "http://192.168.1.138:8080/api/user/login";
 
@@ -89,20 +93,21 @@ public class LoginActivity extends AppCompatActivity {
 
         initLoadDialog();
 
-//        boolean choseRemember =preferences.getBoolean("remember_password", false);
-//        if (choseRemember){
-//            String account = preferences.getString("mobile_phone","");
-//            String password = preferences.getString("password","");
-//            et_login_username.setText(account);
-//            et_login_password.setText(password);
-//            cb_remember.setChecked(true);
-//        }
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean choseRemember =preferences.getBoolean("remember_password", false);
+        if (choseRemember){
+            String account = preferences.getString("mobile_phone","");
+            String password = preferences.getString("password","");
+            et_login_username.setText(account);
+            et_login_password.setText(password);
+            cb_remember.setChecked(true);
+        }
     }
 
 
     @Event({R.id.tv_userRegister, R.id.back, R.id.btn_login})
     private void onClick(View v) {
-        String mobile = et_login_username.getText().toString();
+        final String mobile = et_login_username.getText().toString();
         String password = et_login_password.getText().toString();
         switch (v.getId()) {
             case R.id.btn_login:
@@ -136,15 +141,15 @@ public class LoginActivity extends AppCompatActivity {
         onEffectPassword(password);
         if (validateAccount(mobile) && validatePassword(password)) {
             loadingDialog.show();
-//            editor = preferences.edit();
-//            if (cb_remember.isChecked()){
-//                editor.putBoolean("remember_password",true);
-//                editor.putString("mobile_phone",mobile);
-//                editor.putString("password",password);
-//            }else {
-//                editor.clear();
-//            }
-//            editor.commit();
+            editor = preferences.edit();
+            if (cb_remember.isChecked()){
+                editor.putBoolean("remember_password",true);
+                editor.putString("mobile_phone",mobile);
+                editor.putString("password",password);
+            }else {
+                editor.clear();
+            }
+            editor.commit();
             RequestParams params = new RequestParams(loginUrl);
             params.addBodyParameter("mobile_phone", mobile);
             params.addBodyParameter("password", password);
@@ -153,9 +158,14 @@ public class LoginActivity extends AppCompatActivity {
                 public void onSuccess(String result) {
                     Gson gson = new Gson();
                     MsgBean msgBean = gson.fromJson(result, MsgBean.class);
-                    ToastUtil.show(context, msgBean.getMsg());
-                    LogUtil.d("loginSuccess", msgBean.toString());
-//                    finish();
+                    int code = msgBean.getCode();
+                    if (code == 200){
+                        finish();
+                        ToastUtil.show(context, msgBean.getMsg());
+                    }else {
+                        ToastUtil.show(context, msgBean.getMsg());
+                    }
+                    LogUtil.d("loginSuccess", "code="+msgBean.getCode()+":"+msgBean.getMsg());
                 }
 
                 @Override

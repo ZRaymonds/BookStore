@@ -42,8 +42,8 @@
             android:src="@drawable/icon_login_view" />
 
         <TextView
-            android:id="@+id/tv_jumpLogin"
-            android:layout_width="80dp"
+            android:id="@+id/tv_showName"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_below="@+id/iv_loginView"
             android:layout_centerHorizontal="true"
