@@ -112,17 +112,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_login"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal">
 
             <CheckBox
                 android:id="@+id/cb_remember"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="80dp"
                 android:layout_marginRight="80dp"
-                android:text="记住密码"
-                android:layout_marginEnd="80dp" />
+                android:text="记住密码" />
 
             <CheckBox
                 android:id="@+id/cb_autoLogin"

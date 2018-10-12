@@ -138,7 +138,7 @@ public class MainActivity extends FragmentActivity {
                 tvCurrent = tvSelf;
                 if (bookSelfFragment == null) {
                     bookSelfFragment = new BookSelfFragment();
-                    transaction.add(R.id.main_content, bookSelfFragment);
+                    transaction.replace(R.id.main_content, bookSelfFragment);
                 } else {
                     transaction.show(bookSelfFragment);
                 }

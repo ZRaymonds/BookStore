@@ -86,8 +86,8 @@ public class BookMyFragment extends Fragment {
         super.onResume();
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String account = null;
-        if (preferences != null){
-            account = preferences.getString("mobile_phone","");
+        if (preferences != null) {
+            account = preferences.getString("mobile_phone", "");
         }
         tv_showName.setText(account);
     }
@@ -119,7 +119,7 @@ public class BookMyFragment extends Fragment {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case R.id.iv_setting:
-                startActivity(new Intent(getActivity(),SettingActivity.class));
+                startActivity(new Intent(getActivity(), SettingActivity.class));
                 break;
             default:
                 break;

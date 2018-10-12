@@ -18,6 +18,7 @@ import com.app.bookstore.dao.UserDao;
 import com.app.bookstore.db.UserTable;
 import com.app.bookstore.fragment.BookMyFragment;
 import com.app.bookstore.util.DbUtil;
+import com.app.bookstore.util.ToastUtil;
 import com.google.gson.Gson;
 
 import org.xutils.DbManager;
@@ -92,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
                 break;
             case R.id.btn_selectAll:
-                registerSelect();
+//                registerSelect();
                 break;
             default:
                 break;
@@ -126,19 +127,20 @@ public class RegisterActivity extends AppCompatActivity {
                 Gson gson = new Gson();
                 MsgBean msgBean = gson.fromJson(result, MsgBean.class);
                 int code = msgBean.getCode();
-                if (code == 400) {
-                    Toast.makeText(RegisterActivity.this, msgBean.getMsg(), Toast.LENGTH_SHORT).show();
-                } else {
+                if (code == 200) {
                     UserDao.save(user);
+                    ToastUtil.show(RegisterActivity.this, msgBean.getMsg());
                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                     finish();
+                } else {
+                    ToastUtil.show(RegisterActivity.this, msgBean.getMsg());
                 }
                 Log.d("TAG", result);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                Toast.makeText(RegisterActivity.this, ex.toString(), Toast.LENGTH_SHORT).show();
+                ToastUtil.show(RegisterActivity.this, ex.getMessage());
                 Log.d("TAC", ex.toString());
             }
 

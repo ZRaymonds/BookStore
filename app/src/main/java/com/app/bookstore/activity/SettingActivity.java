@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.bookstore.R;
+import com.app.bookstore.util.ToastUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,7 +49,7 @@ public class SettingActivity extends AppCompatActivity {
     @ViewInject(R.id.tv_showVersion)
     TextView tv_showVersion;
 
-    String url = "http://192.168.1.138:8080/app/listDeveloper/lm";
+    String url = "http://111.230.204.150/app/listDeveloper/lm";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +105,7 @@ public class SettingActivity extends AppCompatActivity {
                 int id = jsonObject2.getInt("id");
                 final int versionCode = jsonObject2.getInt("version_code");
                 String fileName = jsonObject2.getString("file_name");
-                String fileUrl = jsonObject2.getString("file_url");
+                final String fileUrl = jsonObject2.getString("file_url");
                 Log.d("TAG", "id is " + id);
                 Log.d("TAG", "version is " + versionCode);
                 Log.d("TAG", "fileName is " + fileName);
@@ -113,10 +114,10 @@ public class SettingActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (getVersionCode(SettingActivity.this) < versionCode) {
-                            showDialogUpdate();//弹出提示版本更新的对话框
+                            showDialogUpdate(fileUrl);//弹出提示版本更新的对话框
                         } else {
                             //否则吐司，说现在是最新的版本
-                            Toast.makeText(SettingActivity.this, "当前已经是最新的版本", Toast.LENGTH_SHORT).show();
+                            ToastUtil.show(SettingActivity.this,"当前已是最新版本");
                         }
                     }
                 });
@@ -128,14 +129,16 @@ public class SettingActivity extends AppCompatActivity {
 
     /**
      * 提示版本更新的对话框
+     *
+     * @param fileUrl
      */
-    private void showDialogUpdate() {
+    private void showDialogUpdate(final String fileUrl) {
         // 这里的属性可以一直设置，因为每次设置后返回的是一个builder对象
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         // 设置提示框的标题
         builder.setTitle("版本升级").
                 // 设置提示框的图标
-                        setIcon(R.mipmap.ic_launcher).
+                        setIcon(R.mipmap.icon_launcher).
                 // 设置要显示的信息
                         setMessage("发现新版本！请及时更新").
                 // 设置确定按钮
@@ -144,7 +147,7 @@ public class SettingActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Toast.makeText(MainActivity.this, "选择确定哦", 0).show();
-                        loadNewVersionProgress();//下载最新的版本程序
+                        loadNewVersionProgress(fileUrl);//下载最新的版本程序
                     }
                 }).
 
@@ -153,6 +156,7 @@ public class SettingActivity extends AppCompatActivity {
 
         // 生产对话框
         AlertDialog alertDialog = builder.create();
+        alertDialog.setCancelable(false);
         // 显示对话框
         alertDialog.show();
 
@@ -161,9 +165,11 @@ public class SettingActivity extends AppCompatActivity {
 
     /**
      * 下载新版本程序
+     *
+     * @param fileUrl
      */
-    private void loadNewVersionProgress() {
-        final String uri = "http://192.168.1.138:8080/app/download/LM/20181008114128391_999125.apk";
+    private void loadNewVersionProgress(String fileUrl) {
+        final String uri = "http://111.230.204.150" + fileUrl;
         final ProgressDialog pd;    //进度条对话框
         pd = new ProgressDialog(this);
         pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -214,7 +220,7 @@ public class SettingActivity extends AppCompatActivity {
             pd.setMax(conn.getContentLength());
             InputStream is = conn.getInputStream();
             long time = System.currentTimeMillis();//当前时间的毫秒数
-            File file = new File(Environment.getExternalStorageDirectory(), time + "20181008114128391_999125.apk");
+            File file = new File(Environment.getExternalStorageDirectory(), time + "bookstore.apk");
             FileOutputStream fos = new FileOutputStream(file);
             BufferedInputStream bis = new BufferedInputStream(is);
             byte[] buffer = new byte[1024];

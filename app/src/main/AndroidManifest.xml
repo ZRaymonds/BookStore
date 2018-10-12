@@ -9,7 +9,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -27,6 +27,7 @@
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.ImportBookActivity"/>
     </application>
 
 </manifest>

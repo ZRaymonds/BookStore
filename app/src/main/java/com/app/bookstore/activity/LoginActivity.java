@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private SharedPreferences.Editor editor;
 
-    private String loginUrl = "http://192.168.1.138:8080/api/user/login";
+    private String loginUrl = "http://111.230.204.150/api/user/login";
 
     private Context context;
 
@@ -94,21 +94,25 @@ public class LoginActivity extends AppCompatActivity {
         initLoadDialog();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean choseRemember =preferences.getBoolean("remember_password", false);
-        if (choseRemember){
-            String account = preferences.getString("mobile_phone","");
-            String password = preferences.getString("password","");
+        boolean choseRemember = preferences.getBoolean("remember_password", false);
+        if (choseRemember) {
+            String account = preferences.getString("mobile_phone", "");
+            String password = preferences.getString("password", "");
             et_login_username.setText(account);
             et_login_password.setText(password);
             cb_remember.setChecked(true);
         }
+        String mobile = et_login_username.getText().toString();
+        onEffectName(mobile);
+        String password = et_login_password.getText().toString();
+        onEffectPassword(password);
     }
 
 
     @Event({R.id.tv_userRegister, R.id.back, R.id.btn_login})
     private void onClick(View v) {
         final String mobile = et_login_username.getText().toString();
-        String password = et_login_password.getText().toString();
+        final String password = et_login_password.getText().toString();
         switch (v.getId()) {
             case R.id.btn_login:
                 if (VerifyUtil.isConnect(context)) {
@@ -126,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.tv_userRegister:
                 startActivity(new Intent(this, RegisterActivity.class));
                 overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+                finish();
                 break;
             case R.id.back:
                 finish();
@@ -137,19 +142,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(final String mobile, final String password) {
-        onEffectName(mobile);
-        onEffectPassword(password);
         if (validateAccount(mobile) && validatePassword(password)) {
             loadingDialog.show();
-            editor = preferences.edit();
-            if (cb_remember.isChecked()){
-                editor.putBoolean("remember_password",true);
-                editor.putString("mobile_phone",mobile);
-                editor.putString("password",password);
-            }else {
-                editor.clear();
-            }
-            editor.commit();
             RequestParams params = new RequestParams(loginUrl);
             params.addBodyParameter("mobile_phone", mobile);
             params.addBodyParameter("password", password);
@@ -159,18 +153,27 @@ public class LoginActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     MsgBean msgBean = gson.fromJson(result, MsgBean.class);
                     int code = msgBean.getCode();
-                    if (code == 200){
+                    if (code == 200) {
+                        editor = preferences.edit();
+                        if (cb_remember.isChecked()) {
+                            editor.putBoolean("remember_password", true);
+                            editor.putString("mobile_phone", mobile);
+                            editor.putString("password", password);
+                        } else {
+                            editor.clear();
+                        }
+                        editor.commit();
                         finish();
                         ToastUtil.show(context, msgBean.getMsg());
-                    }else {
+                    } else {
                         ToastUtil.show(context, msgBean.getMsg());
                     }
-                    LogUtil.d("loginSuccess", "code="+msgBean.getCode()+":"+msgBean.getMsg());
+                    LogUtil.d("loginSuccess", "code=" + msgBean.getCode() + ":" + msgBean.getMsg());
                 }
 
                 @Override
                 public void onError(Throwable ex, boolean isOnCallback) {
-                    ToastUtil.show(context, "账号或密码错误");
+                    ToastUtil.show(context, ex.getMessage());
                     LogUtil.d("loginError", ex.toString());
                     loadingDialog.dismiss();
                 }
@@ -243,7 +246,7 @@ public class LoginActivity extends AppCompatActivity {
         LayoutName.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                LayoutName.setError("请输入正确的手机号");
             }
 
             @Override
